@@ -10,7 +10,7 @@ class Chatbot:
         self.api_endpoint = config['api_endpoint']
         self.authorization = config['authorization_header']
         self.bot_name = config['bot_name']
-        self.user_name = "User"
+        self.user_name = config['user_name']
         
         # State variables
         self.chat_history = []

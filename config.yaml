@@ -1,3 +1,4 @@
 api_endpoint: "https://api.example.com/chat"
 authorization_header: "Bearer YOUR_TOKEN"
 bot_name: Experimental Bot
+user_name: You

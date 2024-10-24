@@ -9,14 +9,6 @@ This project is an experimental chatbot that features a dynamic personality and 
 - **Terminal Interface:** An interactive, text-based interface using Rich, featuring dynamic styling for user-bot conversations.
 - **Memory and State:** The bot keeps a chat history and adjusts responses based on the current conversation.
 
-## Secret Commands
-- `void`: Enter a mysterious, dark mode with maximum weirdness.
-- `chaos`: Gradually increases the weirdness level.
-- `dream`: Activate a dreamy, ethereal mode with light weirdness.
-- `quit`: Exit the program.
-- `clear`: Clear the chat history.
-- `change username`: Change the user's name.
-
 ## Prerequisites
 - Python 3.8 or higher
 - Install required dependencies:
@@ -53,9 +45,15 @@ python3 run_bot.py
 ```
 
 ### Available Commands
-- **help**: Displays available commands.
-- **quit**: Exits the program.
-- **clear**: Resets the bot's memory and state.
+- `quit`: Exit the program.
+- `clear`: Clear the chat history.
+- `help`: Display available commands.
+- `change username`: Change the user's name.
+
+### Secret Commands
+- `void`: Enter a mysterious, dark mode with maximum weirdness.
+- `chaos`: Gradually increases the weirdness level.
+- `dream`: Activate a dreamy, ethereal mode with light weirdness.
 
 ### Example Session
 

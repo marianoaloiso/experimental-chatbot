@@ -35,20 +35,20 @@ class Chatbot:
     def _enter_void_mode(self):
         self.weirdness_level = 1.0
         self.personality = ["mysterious", "dark"]
-        self.user_name = "Void Seeker"
+        self.bot_name = "Void Seeker"
         return "Entering the void... 🌑"
 
     def _increase_chaos(self):
         self.weirdness_level = min(1.0, self.weirdness_level + 0.1)
         if self.weirdness_level > 0.5:
             self.personality = ["chaotic", "unpredictable"]
-            self.user_name = "Chaos Seeker"
+            self.bot_name = "Chaos Seeker"
         return "Chaos is rising... 🔥"
 
     def _enter_dream_mode(self):
         self.weirdness_level = 0.2
         self.personality = ["dreamy", "ethereal"]
-        self.user_name = "Dreamer"
+        self.bot_name = "Dreamer"
         return "✨ Entering dreamscape... ✨"
 
     def send_message(self, message):

@@ -1,4 +1,5 @@
 import random, requests, yaml
+from .utils import analyze_sentiment, generate_glitch_text
 
 class Chatbot:
     def __init__(self, config_path='config.yaml'):
@@ -15,7 +16,9 @@ class Chatbot:
         # State variables
         self.chat_history = []
         self.weirdness_level = 0.0  # Probability of weird responses
-        self.personality = ["neutral"]
+        self.sentiment = 0.0
+        self.mood = "neutral"
+        self.personality = ["curious", "witty"]
         
         # Easter eggs and hidden features
         self.secret_commands = {
@@ -34,6 +37,7 @@ class Chatbot:
     # Secret modes
     def _enter_void_mode(self):
         self.weirdness_level = 1.0
+        self.mood = "void"
         self.personality = ["mysterious", "dark"]
         self.bot_name = "Void Seeker"
         return "Entering the void... 🌑"
@@ -47,9 +51,22 @@ class Chatbot:
 
     def _enter_dream_mode(self):
         self.weirdness_level = 0.2
+        self.mood = "dreamy"
         self.personality = ["dreamy", "ethereal"]
         self.bot_name = "Dreamer"
         return "✨ Entering dreamscape... ✨"
+    
+    def _update_personality(self):
+        if self.sentiment > 0.5:
+            self.personality = ["friendly", "helpful"]
+        elif self.sentiment < -0.5:
+            self.personality = ["sarcastic", "snarky"]
+        else:
+            self.personality = ["curious", "witty"]
+        
+    def _update_sentiment(self, message):
+        score = analyze_sentiment(message)
+        self.sentiment += max(-0.2, min(0.2, score))
 
     def send_message(self, message):
         
@@ -57,6 +74,10 @@ class Chatbot:
         if message.lower() in self.secret_commands:
             return self.secret_commands[message.lower()]()
 
+        # Update sentiment and personality
+        self._update_sentiment(message)
+        self._update_personality()
+        
         # Update chat history with the user messages
         self.chat_history.append({"sender": "user", "message": message})
 
@@ -105,6 +126,7 @@ class Chatbot:
         memory_string = (
             f"I am {self.bot_name}, a bot with the following traits: "
             f"{', '.join(self.personality)}. "
+            f"My mood is {self.mood}. "
             f"""My weirdness level is {self.weirdness_level:.2f}.
             This is the probabiliy of being weird.
             """
